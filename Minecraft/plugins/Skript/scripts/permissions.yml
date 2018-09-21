@@ -1,0 +1,27 @@
+#This is the main skript in the ShadowSkript series
+#This is the purchased version you WILL have all access to this skript
+#-------------------------------------
+#If you do copy this please give credit
+
+#I whould strongly recommend not to edit this down below
+#if you dont know what you are doing.
+
+options:
+	np: &4Sorry, Can't do that
+#How much money they start with	
+	stmoney: 0
+	
+	
+	
+	
+#-------------------------------------
+
+on first join:
+	set {money.%player%} to {@stmoney}
+	
+command /runner [<text>]:
+	trigger:
+		if arg 1 is not set:
+			make console execute "/sk reload Main"
+		if arg 1 is set:
+			stop event

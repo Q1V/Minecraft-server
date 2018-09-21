@@ -1,0 +1,116 @@
+#
+#
+#
+#
+#
+#
+#
+
+
+options:
+	1: 1
+	
+	
+	
+	
+	
+	
+	
+	
+#
+#
+#
+
+variables:
+	{rank_countid} = 0
+#
+#
+#
+#
+
+
+on join:
+	if {rank::%player%} is not set:
+		set {rank::%player%} to default
+	
+	
+	
+	if file "/plugins/Players/%player%.yml" doesn't exist:
+		create file "/plugins/Players/%player%.yml"
+		write "Rank:" at line 2 to file "/plugins/Players/%player%.yml"
+		write "%{rank::%player%}%" at line 3 to file "/plugins/Players/%player%.yml"
+		write "Permissions:" at line 4 to file "/plugins/Players/%player%.yml" #Permission from line 4 to line 35
+		write "use.spawn" at line 5 to file "/plugins/Players/%player%.yml"
+		write "use.tpa" at line 6 to file "/plugins/Players/%player%.yml"
+		write "" at line 7 to file "/plugins/Players/%player%.yml"
+		write "" at line 8 to file "/plugins/Players/%player%.yml"
+		write "" at line 9 to file "/plugins/Players/%player%.yml"
+		write "" at line 10 to file "/plugins/Players/%player%.yml" 
+		write "" at line 11 to file "/plugins/Players/%player%.yml"
+		write "" at line 12 to file "/plugins/Players/%player%.yml"
+		write "" at line 13 to file "/plugins/Players/%player%.yml"		
+		write "" at line 14 to file "/plugins/Players/%player%.yml"
+		write "" at line 15 to file "/plugins/Players/%player%.yml"
+		write "" at line 16 to file "/plugins/Players/%player%.yml"
+		write "" at line 17 to file "/plugins/Players/%player%.yml"
+		write "" at line 18 to file "/plugins/Players/%player%.yml"
+		write "" at line 19 to file "/plugins/Players/%player%.yml"
+		write "" at line 20 to file "/plugins/Players/%player%.yml"
+		write "" at line 21 to file "/plugins/Players/%player%.yml"
+		write "" at line 22 to file "/plugins/Players/%player%.yml"
+		write "" at line 23 to file "/plugins/Players/%player%.yml"
+		write "" at line 24 to file "/plugins/Players/%player%.yml"
+		write "" at line 25 to file "/plugins/Players/%player%.yml"
+		write "" at line 26 to file "/plugins/Players/%player%.yml"
+		write "" at line 27 to file "/plugins/Players/%player%.yml"
+		write "" at line 28 to file "/plugins/Players/%player%.yml"
+		write "" at line 29 to file "/plugins/Players/%player%.yml"
+		write "" at line 30 to file "/plugins/Players/%player%.yml"
+		write "" at line 31 to file "/plugins/Players/%player%.yml"
+		write "" at line 32 to file "/plugins/Players/%player%.yml"
+		write "" at line 33 to file "/plugins/Players/%player%.yml"
+		write "" at line 34 to file "/plugins/Players/%player%.yml"
+		write "" at line 35 to file "/plugins/Players/%player%.yml"
+		
+		
+		
+
+
+
+
+command /rankgive %player% <text>:
+	trigger:
+		if arg 1 is "Melon":
+			
+
+every tick:
+	loop all players:
+		loop-player has permission "bought.rank.Melon":
+			
+		
+		
+		loop-player has permission "bought.rank.Banan":
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+command /redeem:
+	description: Use this to claim your rank or other stuff.
+	trigger:
+		
+		
+		

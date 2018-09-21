@@ -1,0 +1,342 @@
+#TODO
+#Make the final feature /rank list on ranks
+#Add permissions and a permission section
+#Money system
+#Finish Test command
+#URGENT put everything into Player's uuid
+
+#This is the main skript in the ShadowSkript series
+#This is the purchased version you WILL have all access to this skript
+#-------------------------------------
+#If you do copy this please give credit
+
+#I whould strongly recommend not to edit this down below
+#if you dont know what you are doing.
+
+options:
+	np: &4Sorry, Can't do that
+#How much money they start with	
+	stmoney: 0
+#DO NOT TOUCH	
+	Owner: &7[&4&lOwner&7]
+	H-Admin: &7[&c&lHead&1-&cAdmin&7]
+	Admin: &7[&c&lAdmin&7]
+	H-Mod: &7[&3&lHead&1-&3Mod&7]
+	Mod: &7[&3&lMod&7]
+	Helper: &7[&2&lHelper&7]
+	default: &7[&2&lDefault&7]
+	BalP: &7&l[&5Balance&7&l]
+	
+	
+#-----------------------------------------------------------
+
+# Disabled by default
+
+# Load up of the plugin and unload the plugin
+
+#on load:
+#	execute console command "/sk enable Main.sk"
+#	send " " to console
+#	send "Loading Main Script..." to console
+#	set {_startup} to true
+#	if {_startup} is true:
+#		send "Main Script succesfully loaded!" to console
+#		send "Have fun!" to console 
+#		send " " to console
+		set {_playeruuid} to true
+		
+
+
+#	if {_startup} is false:
+#		execute console command "/sk disable Main.sk"
+	
+	
+	
+#on unload:
+#	set {_startup} to false
+#	execute console command "/sk disable Main.sk"
+	set {_playeruuid} to false
+	
+
+
+#-----------------------------------------------------------
+
+# Player UUID
+
+on join:
+	if {_playeruuid} is true:
+		if {uuid::%player%} is not set:
+			set {uuid::%player%} to player's uuid
+on quit:
+	if {_playeruuid} is true:
+		if {uuid::%player%} is not set:
+			set {uuid::%player%} to player's uuid
+on command:
+	if {_playeruuid} is true:
+		if {uuid::%player%} is not set:
+			set {uuid::%player%} to player's uuid
+		
+#-----------------------------------------------------------
+
+# First join setting varuable
+on first join:
+	set {bal::%player%} to {@stmoney}
+	set {rank::%player%} to "default"
+	
+# Test Command	
+
+command /test [<text>] [<player>] [<number>]:
+	permission: *
+	trigger:
+		if arg 1 is "Owner":
+			if {Owner:%{uuid::%arg 2%}%} is true:
+				send "YEEP"
+		if arg 1 is "Money":
+			add arg 3 to {Money:%{uuid::%arg 2%}%}
+		if arg 1 is "check":
+			send "%{Money:%{uuid::%arg 2%}%}%"
+		if arg 1 is "subtract":
+			subtract 20 from {Money:%{uuid::%arg 2%}%}
+			
+			
+			
+			
+#----------------------------------------------------			
+#TODO Make /rank list command
+#Staff and donor ranks
+			
+command /rank [<text>] [<offline player>] [<text>] :
+	permission: admin.rank
+	trigger:
+		if arg 1 is not set:
+			send "&4-----------------------------------------------------"
+			send "&c/rank set <player> <rank> &8:: &7Set a player's rank"
+			send "&c/rank list &8:: &7Shows you the list of all staff members and ranks"
+			send "&c/rank reset <player> &8:: &7Resets the rank of a player to &7&lMember"
+			send "&4-----------------------------------------------------"
+		
+		if arg 1 is "reset":
+			if arg 2 is not set:
+				send "&4-----------------------------------------------------"
+				send "&c/rank set <player> <rank> &8:: &7Set a player's rank"
+				send "&c/rank list &8:: &7Shows you the list of all staff members and ranks"
+				send "&c/rank reset <player> &8:: &7Resets the rank of a player to &7&lMember"
+				send "&4-----------------------------------------------------"
+				
+			if arg 2 is set:
+				if {rank.%arg 2%} is "Owner" or "H-Admin" or "Admin" or "H-Mod" or "Mod" or "Helper":
+					broadcast "&c-------------------------------------"
+					broadcast "&c&l%arg 2% &4&lhas been demoted to default"
+					broadcast "&c-------------------------------------"
+					set {rank.%arg 2%} to "default"
+					set {Owner:%{uuid::%player%}%} to false
+					set {H-Admin:%{uuid::%player%}%} to false
+					set {Admin:%{uuid::%player%}%} to false
+					set {H-Mod:%{uuid::%player%}%} to false
+					set {Mod:%{uuid::%player%}%} to false
+					set {Helper:%{uuid::%player%}%} to false
+					set {default:%{uuid::%player%}%} to true
+				else:
+		#Will add VIP and VIP+ soon.
+					set {rank.%arg 2%} to "default"
+					set {default:%{uuid::%player%}%} to true
+		
+		if arg 1 is "set":
+			if arg 2 is not set:
+				send "&4-----------------------------------------------------"
+				send "&c/rank set <player> <rank> &8:: &7Set a player's rank"
+				send "&c/rank list &8:: &7Shows you the list of all staff members and ranks"
+				send "&c/rank reset <player> &8:: &7Resets the rank of a player to &7&lMember"
+				send "&4-----------------------------------------------------"
+			if arg 2 is set:
+				if arg 3 is not set:
+					send "&4-----------------------------------------------------"
+					send "&c/rank set <player> <rank> &8:: &7Set a player's rank"
+					send "&c/rank list &8:: &7Shows you the list of all staff members and ranks"
+					send "&c/rank reset <player> &8:: &7Resets the rank of a player to &7&lMember"
+					send "&4-----------------------------------------------------"
+					
+				if arg 3 is set:
+					if arg 3 is "Owner":
+						set {rank.%arg 2%} to "Owner"
+						set {prefix.%arg 2%} to "{@Owner}"
+						broadcast "&4-----------------------------"
+						broadcast "&c&l%arg 2% &4is our new Owner!"
+						broadcast "&4Please welcome them!"
+						broadcast "&4-----------------------------"
+						set {Owner:%{uuid::%player%}%} to true
+						set {H-Admin:%{uuid::%player%}%} to false
+						set {Admin:%{uuid::%player%}%} to false
+						set {H-Mod:%{uuid::%player%}%} to false
+						set {Mod:%{uuid::%player%}%} to false
+						set {Helper:%{uuid::%player%}%} to false
+						set {default:%{uuid::%player%}%} to false
+					if arg 3 is "Head-Admin":
+						set {rank.%arg 2%} to "H-Admin"
+						set {prefix.%arg 2%} to "{@H-Admin}"
+						broadcast "&4-----------------------------"
+						broadcast "&c&l%arg 2% &4is our new Head-Admin!"
+						broadcast "&4Please welcome them!"
+						broadcast "&4-----------------------------"
+						set {H-Admin:%{uuid::%player%}%} to true
+						set {Owner:%{uuid::%player%}%} to false
+						set {Admin:%{uuid::%player%}%} to false
+						set {H-Mod:%{uuid::%player%}%} to false
+						set {Mod:%{uuid::%player%}%} to false
+						set {Helper:%{uuid::%player%}%} to false
+						set {default:%{uuid::%player%}%} to false
+					if arg 3 is "Admin":
+						set {rank.%arg 2%} to "Admin"
+						set {prefix.%arg 2%} to "{@Admin}"
+						broadcast "&4-----------------------------"
+						broadcast "&c&l%arg 2% &4is our new Admin!"
+						broadcast "&4Please welcome them!"
+						broadcast "&4-----------------------------"
+						set {Owner:%{uuid::%player%}%} to false
+						set {H-Admin:%{uuid::%player%}%} to false
+						set {Admin:%{uuid::%player%}%} to true
+						set {H-Mod:%{uuid::%player%}%} to false
+						set {Mod:%{uuid::%player%}%} to false
+						set {Helper:%{uuid::%player%}%} to false
+						set {default:%{uuid::%player%}%} to false
+					if arg 3 is "Head-Mod":
+						set {rank.%arg 2%} to "H-Mod"
+						set {prefix.%arg 2%} to "{@H-Mod}"
+						broadcast "&4-----------------------------"
+						broadcast "&c&l%arg 2% &4is our new Head-Mod!"
+						broadcast "&4Please welcome them!"
+						broadcast "&4-----------------------------"
+						set {Owner:%{uuid::%player%}%} to false
+						set {H-Admin:%{uuid::%player%}%} to false
+						set {Admin:%{uuid::%player%}%} to false
+						set {H-Mod:%{uuid::%player%}%} to true
+						set {Mod:%{uuid::%player%}%} to false
+						set {Helper:%{uuid::%player%}%} to false
+						set {default:%{uuid::%player%}%} to false
+					if arg 3 is "Mod" or "Moderator":
+						set {rank.%arg 2%} to "Mod"
+						set {prefix.%arg 2%} to "{@Mod}"
+						broadcast "&4-----------------------------"
+						broadcast "&c&l%arg 2% &4is our new Mod!"
+						broadcast "&4Please welcome them!"
+						broadcast "&4-----------------------------"
+						set {Owner:%{uuid::%player%}%} to false
+						set {H-Admin:%{uuid::%player%}%} to false
+						set {Admin:%{uuid::%player%}%} to false
+						set {H-Mod:%{uuid::%player%}%} to false
+						set {Mod:%{uuid::%player%}%} to true
+						set {Helper:%{uuid::%player%}%} to false
+						set {default:%{uuid::%player%}%} to false
+					if arg 3 is "Helper":
+						set {rank.%arg 2%} to "Helper"
+						set {prefix.%arg 2%} to "{@Helper}"
+						broadcast "&4-----------------------------"
+						broadcast "&c&l%arg 2% &4is our new Helper!"
+						broadcast "&4Please welcome them!"
+						broadcast "&4-----------------------------"
+						set {Owner:%{uuid::%player%}%} to false
+						set {H-Admin:%{uuid::%player%}%} to false
+						set {Admin:%{uuid::%player%}%} to false
+						set {H-Mod:%{uuid::%player%}%} to false
+						set {Mod:%{uuid::%player%}%} to false
+						set {Helper:%{uuid::%player%}%} to true
+						set {default:%{uuid::%player%}%} to false
+#----------------------------------------------------------------------
+
+#Chat Message
+	
+						
+on chat:
+	cancel event
+	if {Owner:%{uuid::%player%}%} is true:
+		broadcast "{@Owner} &7%player% &8>> &f%message%"
+	if {H-Admin:%{uuid::%player%}%} is true:
+		broadcast "{@H-Admin} &7%player% &8>> &f%message%"
+	if {Admin:%{uuid::%player%}%} is true:
+		broadcast "{@Admin} &7%player% &8>> &f%message%"
+	if {H-Mod:%{uuid::%player%}%} is true:
+		broadcast "{@H-Mod} &7%player% &8>> &f%message%"
+	if {Mod:%{uuid::%player%}%} is true:
+		broadcast "{@Mod} &7%player% &8>> &f%message%"
+	if {Helper:%{uuid::%player%}%} is true:
+		broadcast "{@Helper} &7%player% &8>> &f%message%"
+	if {default:%{uuid::%player%}%} is true:
+		broadcast "{@default} &7%player% &8>> &f%message%"
+	
+	
+	
+	
+#-----------------------------------------------------------------
+
+# Money system W.I.P
+	
+command /pay [<offline player>] [<number>]:
+	trigger:
+		if arg 2 is set:
+			if arg 2 is equal or higher then 1:
+				if {bal::%player%} have equal or more then arg 2:
+					remove arg 2 from {bal::%player%}
+					add arg 2 to {bal::%arg 1%}
+					send "&cYou have sent &3&l%arg 2% &cdollar to &3&l%arg 1%" to player
+					send "&cYou have recived &3&l%arg 2% &Cdollars from &3&l%player%" to arg 2
+	
+command /bal [<offline player>]:
+	description: Shows You Your MONEYS
+	trigger:
+		if arg 1 is set:
+			if {bal::%arg 1%} is set:
+				send "&7&l[&5Balance&7&l] &c%arg 1% Have &3&l%{bal::%arg 1%}% &cdollars"
+		else:
+			if {bal::%player%} is set:
+				if {bal::%player%} is equal to 1:
+					send "&7&l[&5Balance&7&l] &cYou Have &3&l%{bal::%player%}% &cdollar"
+			else:
+				send "&7&l[&5Balance&7&l] &cYou Have &3&l%{bal::%player%}% &cdollars"	
+				
+# Money admin command
+
+command /eco [<text>] [<player>] [<text>]:
+	permission: admin.eco
+	trigger:
+		if arg 1 is not set:
+			send "&c--------------------"
+			send "&3&l/eco &2set [Player] [Amount]"
+			send "&3&l/eco &2reset [Player]"
+			send "&3&l/eco &2remove [Player] [Amount]"
+			send "&3&l/eco &2add [Player] [Amount]"			
+			send "&c--------------------"
+			
+		if arg 1 is "set":
+			set {bal::%arg 2%} to arg 3
+			send "&3&l%arg 2%'s &cbalance has been set to &3&l%arg 3%&c Dollars"
+			
+		if arg 1 is "reset":
+			set {bal::%arg 2%} to 0
+			send "&cYou have reset &3&l%arg 2% &cbalance"
+			
+		if arg 1 is "remove":
+			remove 5 from {bal::%arg 2%}
+			send "&cYou have removed &4&l%arg 3% &cdollars from &3&l%arg 2%"
+			
+			
+			
+			
+			
+			
+
+	
+			
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						

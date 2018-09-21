@@ -1,0 +1,29 @@
+# === Skript's variable storage ===
+# Please do not modify this file manually!
+#
+# version: 2.2-dev37c
+
+admin:1dab9416-68a3-3e8f-91ce-9a1384da7dca, boolean, 00
+bal::max, string, 8003313030
+bal::q1v, long, 0000000000000000
+bal:123, long, 0000000000000001
+bal:2, long, 0000000000000001
+bal:3, long, 0000000000000001
+default:1dab9416-68a3-3e8f-91ce-9a1384da7dca, boolean, 00
+h-admin:1dab9416-68a3-3e8f-91ce-9a1384da7dca, boolean, 00
+h-mod:1dab9416-68a3-3e8f-91ce-9a1384da7dca, boolean, 00
+helper:1dab9416-68a3-3e8f-91ce-9a1384da7dca, boolean, 00
+mod:1dab9416-68a3-3e8f-91ce-9a1384da7dca, boolean, 00
+money.q1v, long, 0000000000000000
+money:1dab9416-68a3-3e8f-91ce-9a1384da7dca, long, 0000000000000140
+owner:1dab9416-68a3-3e8f-91ce-9a1384da7dca, boolean, 01
+prefix.q1v, string, 8013C2A7375BC2A734C2A76C4F776E6572C2A7375D
+rank::q1v, string, 800764656661756C74
+rank.q1v, string, 80054F776E6572
+rank.see, string, 80054F776E6572
+rank_countid, long, 0000000000000000
+snhub:test:1dab9416-68a3-3e8f-91ce-9a1384da7dca, boolean, 01
+spawn.cords, location, 8605776F726C6480FF0000000181046E616D65208005776F726C6401780940433FCE0305465C0179094051814645C7F556017A0940615A20E56E4F440570697463680842972563037961770843A26BDC
+spawn.spawn, boolean, 01
+uuid::q1v, string, 802431646162393431362D363861332D336538662D393163652D396131333834646137646361
+
